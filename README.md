@@ -17,3 +17,6 @@ From there, your thing is stored safely to disk.
 Just the plain, ol' disk.
 
 # what happens next?
+The things should probably get processed by something. The processor may not be known or even considered at time of thing entry.
+
+So, the processor maybe should run at thing entry time or at a deliberate point later.
