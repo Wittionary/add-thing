@@ -11,7 +11,7 @@ def parse_argstring():
 
     # smash into one single line
     entry = " ".join(argstring)
-    print(f"Parsing string:\n\t`{argstring}` \nas \n\t`{entry}`")
+    #print(f"Parsing string:\n\t`{argstring}` \nas \n\t`{entry}`")
 
     return entry
 
@@ -44,9 +44,9 @@ def attach_entry_id(object):
     # random 6 character numeric id
     number = random.randrange(999999)
     entry_id = str(number).zfill(6)
-    print(f"ENTRY ID: {entry_id}")
+    #print(f"ENTRY ID: {entry_id}")
     entry = {"id": entry_id, "entry": object}
-    #print(f"ENTRY OBJECT: {entry}")
+    print(f"ENTRY OBJECT: {entry}")
 
     return entry
 
