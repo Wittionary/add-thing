@@ -9,6 +9,12 @@ How to add a thing:
 python add.py a new thing
 ```
 
+```bash
+# add 'add' to PATH
+export PATH=$PATH:/mnt/c/filepath/git/add-thing
+add hello there!
+```
+
 From there, your thing is stored safely to disk.
 - No syncing
 - No cloud
