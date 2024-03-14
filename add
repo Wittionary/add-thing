@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-python3 add.py $@
+/usr/bin/python3 add.py "$@"
