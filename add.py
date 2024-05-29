@@ -5,6 +5,7 @@ import sqlite3
 from sqlite3 import Error
 
 OBJECTS_FILE = "objects.json"
+SQLITE_DATABASE = "objects.db"
 
 def parse_argstring():
     """Make sense of whatever has been passed in"""
@@ -49,16 +50,48 @@ def list_objects():
 
     print(json.dumps(json_data, indent=4, sort_keys=True))
 
-def attach_entry_id(object):
+def attach_entry_id(entry):
     """Adds a random 6-character numeric id to the entry"""
     number = random.randrange(999999)
     entry_id = str(number).zfill(6)
     
-    entry = {"id": entry_id, "entry": object}
+    entry = {"id": entry_id, "entry": entry}
     # print(f"ENTRY OBJECT: {entry}")
 
     return entry
 
+def connect_sqlite_database(filename):
+    """Create a database connection to a SQLite database"""
+    connection = None
+    try:
+        connection = sqlite3.connect(filename)
+        #print(sqlite3.sqlite_version)
+    except sqlite3.Error as error:
+        print(error)
+    finally:
+        if connection:
+            print("Connected successfully!")
+            #connection.close()
+
+    return connection
 
 # where code actually runs
 save_object()
+
+# https://docs.python.org/3/library/sqlite3.html#tutorial
+connection = connect_sqlite_database(SQLITE_DATABASE)
+cursor = connection.cursor()
+cursor.execute("CREATE TABLE things(id, entry)")
+
+result = cursor.execute("SELECT entry FROM sqlite_master")
+result.fetchone()
+
+data = [id, entry]
+cursor.executemany("""
+    INSERT INTO things VALUES
+        (?, ?)
+""", data)
+connection.commit()
+
+result = cursor.execute("SELECT entry FROM things")
+result.fetchall()
