@@ -13,7 +13,6 @@ def parse_argstring():
 
     # smash into one single line
     entry = " ".join(argstring)
-    #print(f"Parsing string:\n\t`{argstring}` \nas \n\t`{entry}`")
 
     return entry
 
